@@ -6,7 +6,7 @@ import java.util.Optional;
 
 import javax.validation.Valid;
 
-//import org.apache.commons.lang3.EnumUtils;
+import org.apache.commons.lang3.EnumUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,7 +51,7 @@ public class LancamentoController {
 	@Autowired
 	private FuncionarioService funcionarioService;
 	
-//	@Value("${paginacao.qtd_por_pagina}")
+	@Value("${paginacao.qtd_por_pagina}")
 	private int qtdPorPagina;
 
 	public LancamentoController() {
@@ -244,12 +244,12 @@ public class LancamentoController {
 		lancamento.setDescricao(lancamentoDto.getDescricao());
 		lancamento.setLocalizacao(lancamentoDto.getLocalizacao());
 		lancamento.setData(this.dateFormat.parse(lancamentoDto.getData()));
-//
-//		if (EnumUtils.isValidEnum(TipoEnum.class, lancamentoDto.getTipo())) {
-//			lancamento.setTipo(TipoEnum.valueOf(lancamentoDto.getTipo()));
-//		} else {
-//			result.addError(new ObjectError("tipo", "Tipo inválido."));
-//		}
+
+		if (EnumUtils.isValidEnum(TipoEnum.class, lancamentoDto.getTipo())) {
+			lancamento.setTipo(TipoEnum.valueOf(lancamentoDto.getTipo()));
+		} else {
+			result.addError(new ObjectError("tipo", "Tipo inválido."));
+		}
 
 		return lancamento;
 	}
