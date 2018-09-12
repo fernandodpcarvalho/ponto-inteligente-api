@@ -118,8 +118,12 @@
 		    <artifactId>springfox-swagger-ui</artifactId>
 		    <version>2.0.3</version>
 		</dependency>
-				
-				
+		
+		<!-- EhCache -->
+		<dependency>
+			<groupId>net.sf.ehcache</groupId>
+			<artifactId>ehcache</artifactId>
+		</dependency>				
 		
 	</dependencies>
 

@@ -5,6 +5,8 @@ import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,6 +39,7 @@ public class EmpresaController {
 	 * @return ResponseEntity<Response<EmpresaDto>>
 	 */
 	@GetMapping(value = "/cnpj/{cnpj}")
+	@Cacheable("empresaPorCnpj")
 	public ResponseEntity<Response<EmpresaDto>> buscarPorCnpj(@PathVariable("cnpj") String cnpj) {
 		log.info("Buscando empresa por CNPJ: {}", cnpj);
 		Response<EmpresaDto> response = new Response<EmpresaDto>();
